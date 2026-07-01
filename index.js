@@ -1,3 +1,5 @@
+
+/* OT11 */
 import express from 'express';
 import colecaoUF from './dados/dados.js';
 
@@ -15,6 +17,7 @@ app.get('/ufs/:iduf', (req, res) => {
    let mensagemErro = '';
    let uf;
 
+   /* OT12 if pratamento de erro */
      if (!(isNaN(idUF))) {
         uf = colecaoUF.find(u => u.id === idUF);
         if (!uf) {
