@@ -1,0 +1,26 @@
+{
+  "name": "apirest_ot10",
+  "version": "1.0.0",
+  "main": "dados.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlesaguiar93/apiRest_OT10.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlesaguiar93/apiRest_OT10/issues"
+  },
+  "homepage": "https://github.com/charlesaguiar93/apiRest_OT10#readme",
+  "description": "",
+  "dependencies": {
+    "-": "^0.0.1-security.1",
+    "express": "^5.2.1",
+    "save": "^2.9.0"
+  }
+}
