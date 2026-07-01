@@ -10,15 +10,26 @@ app.get('/ufs', (req, res) => {
 
 app.get('/ufs/:iduf', (req, res) => {
 
-    if (isNaN(req.params.iduf)) {
-        res.status(400).send({ error: 'O parâmetro iduf deve ser um número.' });
-        return;
+   const idUF = parseInt(req.params.iduf);
+   // const uf = colecaoUF.find(u => u.id === idUF);
+   let mensagemErro = '';
+   let uf;
+
+     if (!(isNaN(idUF))) {
+        uf = colecaoUF.find(u => u.id === idUF);
+        if (!uf) {
+     mensagemErro = { error: 'UF não encontrada ' };
+        }
+    } else {
+        mensagemErro = { error: 'ID Requisição  inválido com Letras' };
     }
-
-    const idUF = parseInt(req.params.iduf);
-    const uf = colecaoUF.find(u => u.id === idUF);
-
-    res.send(uf);
+    
+       //res.send(uf); // res.send({"Retornando o valor da idUF completa":`${idUF}`});
+    if (uf) {
+        res.json(uf);
+    } else {
+       res.status(404).send({"error": mensagemErro.error});
+    }
 }); 
 
 
