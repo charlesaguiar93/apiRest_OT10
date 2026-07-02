@@ -1,12 +1,14 @@
+import colecaoUf from '../dados/dados.js';
 
+export const buscarUFs = () => {
+    return colecaoUf;
+}
 
-import colecaoUF from '../dados/dados.js';
-
-export const buscarUFsPorNome = (nomeUF) => {
-    return colecaoUF.filter(uf => uf.nome.toLowerCase().includes(nomeUF.toLowerCase()));
+export const buscarUFsPorNome = (nomeUf) => {
+    return colecaoUf.filter(uf => uf.nome.toLowerCase().includes(nomeUf.toLowerCase()));
 };
 
 export const buscarUFPorId = (id) => {
-  const idUF = parseInt(id);
-  return colecaoUF.find(uf => uf.id === idUF);
-};
+    const idUF = parseInt(id);
+    return colecaoUf.find(uf => uf.id === idUF);
+}

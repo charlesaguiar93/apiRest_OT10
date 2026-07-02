@@ -1,5 +1,4 @@
 
-/* OT11 */
 import express from 'express';
 import {buscarUFs, buscarUFPorId, buscarUFsPorNome} from './servicos/servico.js';
 
@@ -35,17 +34,6 @@ app.get('/ufs/:iduf', (req, res) => {
     }
 }); 
 
-
-
-
-/* // testando diferentes tipos de endpoints no Postman     
-app.get('/ufs/:iduf', (req, res) => {
-    const idUF = req.params.iduf;
-
-res.send({"Retornando o valor da idUF":`${idUF}`});
-
-
-}); */
 
 
 app.listen(8080, () => {
