@@ -1,37 +1,37 @@
 
 /* OT11 */
 import express from 'express';
-import colecaoUF from './dados/dados.js';
+import {buscarUFs, buscarUFPorId, buscarUFsPorNome} from './servicos/servico.js';
 
 const app = express();
 
+
+
+
+/* Rota OT13 */
+/* Rota Servicos -  OT14 */
 app.get('/ufs', (req, res) => {
-    res.json(colecaoUF);
+    const nomeUF = req.query.busca; // captura o parâmetro de busca da query string
+    const resultado = nomeUF ? buscarUFsPorNome(nomeUF) : buscarUFs(); // se houver um parâmetro de busca, filtra as UFs pelo nome, caso contrário, retorna todas as UFs
+
+    if(resultado.length > 0) {
+    res.json(resultado);
+    } else {
+        res.status(404).json({ error: 'Nenhuma UF encontrada com o nome fornecido' });
+    }
 });
 
 
 app.get('/ufs/:iduf', (req, res) => {
 
-   const idUF = parseInt(req.params.iduf);
-   // const uf = colecaoUF.find(u => u.id === idUF);
-   let mensagemErro = '';
-   let uf;
-
-   /* OT12 if pratamento de erro */
-     if (!(isNaN(idUF))) {
-        uf = colecaoUF.find(u => u.id === idUF);
-        if (!uf) {
-     mensagemErro = { error: 'UF não encontrada ' };
-        }
-    } else {
-        mensagemErro = { error: 'ID Requisição  inválido com Letras' };
-    }
-    
-       //res.send(uf); // res.send({"Retornando o valor da idUF completa":`${idUF}`});
+    const uf  = buscarUFPorId(req.params.iduf);
+     
     if (uf) {
         res.json(uf);
+    } else if (isNaN(parseInt(req.params.iduf))) {
+        res.status(400).json({ error: 'Requisição inválida - O parâmetro fornecido não é um número válido' });
     } else {
-       res.status(404).send({"error": mensagemErro.error});
+        res.status(404).json({ error: 'UF não encontrada' });
     }
 }); 
 
